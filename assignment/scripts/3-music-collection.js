@@ -32,19 +32,19 @@ function findByArtist(artist) {
     console.log(newArray)
 } //end findByArtist function.
 
-function search(object){
+function search(object) {
     let searchArray = [];
     for (item of collection) {
         if (item.albumArtist === object.artist && item.albumYearPublished === object.year) {
             searchArray.push(item);
         }
     }
-    if (searchArray.length > 0) {
-        console.log('Your search yielded results!'); //Added for testing clarification if the artist is found.
+    if (object.artist == null || object.year == null) {
+        console.log('No search parameters added');
+        return collection
     }
-    else console.log('Your search yielded no results.'); //Added for testing clarification if the artist is not found.
-    console.log(searchArray)
-
+    console.log('The following matches were found:');
+    return searchArray
 } //end search function.
 
 console.log(addToCollection('Stairway to Heaven', 'Led Zeppelin', 1971));
@@ -59,5 +59,6 @@ showCollection(collection);
 findByArtist('Led Zeppelin');
 findByArtist('Backstreet Boys');
 
-search( { artist:'Led Zeppelin', year:1971} );
-search( { artist:'Backstreet Boys', year:2004} );
+console.log(search({ artist: 'Led Zeppelin', year: 1971 }));
+console.log(search({ artist: 'Backstreet Boys', year: 2001 }));
+console.log(search({}));
