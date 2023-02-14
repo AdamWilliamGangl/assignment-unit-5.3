@@ -28,9 +28,24 @@ function findByArtist(artist) {
     if (newArray.length > 0) {
         console.log('Your artist was found!'); //Added for testing clarification if the artist is found.
     }
-    else console.log('Your artist was not found.') //Added for testing clarification if the artist is not found.
+    else console.log('Your artist was not found.'); //Added for testing clarification if the artist is not found.
     console.log(newArray)
 } //end findByArtist function.
+
+function search(object){
+    let searchArray = [];
+    for (item of collection) {
+        if (item.albumArtist === object.artist && item.albumYearPublished === object.year) {
+            searchArray.push(item);
+        }
+    }
+    if (searchArray.length > 0) {
+        console.log('Your search yielded results!'); //Added for testing clarification if the artist is found.
+    }
+    else console.log('Your search yielded no results.'); //Added for testing clarification if the artist is not found.
+    console.log(searchArray)
+
+} //end search function.
 
 console.log(addToCollection('Stairway to Heaven', 'Led Zeppelin', 1971));
 console.log(addToCollection('Light My Fire', 'The Doors', 1967));
@@ -43,3 +58,6 @@ showCollection(collection);
 
 findByArtist('Led Zeppelin');
 findByArtist('Backstreet Boys');
+
+search( { artist:'Led Zeppelin', year:1971} );
+search( { artist:'Backstreet Boys', year:2004} );
