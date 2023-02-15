@@ -36,31 +36,39 @@ function findByArtist(artist) {
 function search(object) {
     let searchArray = [];
     for (item of collection) {
-        if (item.albumArtist === object.artist && item.albumYearPublished === object.year && item.tracks === object.trackName) {
+        for (taco of item.albumTracks){
+            if (item.albumTracks.name === object.trackName){
+                searchArray.push(item);
+            }
+        } // end nested for loop
+        if (item.albumArtist === object.artist && item.albumYearPublished === object.year) { //I read this as searching either an artist & year or a trackname.
             searchArray.push(item);
         }
-    }
+    } // end primary for loop
     if (object.artist == null || object.year == null) {
         console.log('No search parameters added');
-        return collection
+        return 
     }
     console.log('The following matches were found:');
     return searchArray
 } //end search function.
 
-console.log(addToCollection('Led Zeppelin I', 'Led Zeppelin', 1969, [['Good Times, Bad Times', 2:46],['Dazed and Confused', 6:27],['You Shook Me', 6:28]]));
-console.log(addToCollection('L.A. Woman', 'The Doors', 1971));
-console.log(addToCollection('Led Zeppelin IV', 'Led Zeppelin', 1971));
-console.log(addToCollection('Dark Side of the Moon', 'Pink Floyd', 1973));
-console.log(addToCollection('The Grand Illusion', 'Styx', 1977));
-console.log(addToCollection('Some Nights', 'Fun', 2012));
+console.log(addToCollection('Led Zeppelin I', 'Led Zeppelin', 1969, [{name: 'Good Times, Bad Times', duration:'2:46'},{name:'Dazed and Confused', duration:'6:27'},{name:'You Shook Me', duration:'6:28'}]));
+console.log(addToCollection('L.A. Woman', 'The Doors', 1971, [{name:'Dazed and Confused', duration:'6:27'},{name:'You Shook Me', duration:'6:28'}]));
+console.log(addToCollection('Led Zeppelin IV', 'Led Zeppelin', 1971, [{name:'Dazed and Confused', duration:'6:27'},{name:'You Shook Me', duration:'6:28'}]));
+console.log(addToCollection('Dark Side of the Moon', 'Pink Floyd', 1973, [{name:'Dazed and Confused', duration:'6:27'},{name:'You Shook Me', duration:'6:28'}]));
+console.log(addToCollection('The Grand Illusion', 'Styx', 1977, [{name:'Dazed and Confused', duration:'6:27'},{name:'You Shook Me', duration:'6:28'}]));
+console.log(addToCollection('Some Nights', 'Fun', 2012, [{name:'Dazed and Confused', duration:'6:27'},{name:'You Shook Me', duration:'6:28'}]));
 
 showCollection(collection);
 
 findByArtist('Led Zeppelin');
 findByArtist('Backstreet Boys');
 
-console.log(search({ artist: 'Led Zeppelin', year: 1971 }));
-console.log(search({ artist: 'Backstreet Boys', year: 2001 }));
-console.log(search({}));
+console.log('Testing Led Zeppelin- should find a result', search({ artist: 'Led Zeppelin', year: 1971 }));
+console.log('Testing Backstreet Boys- Should not find a result', search({ artist: 'Backstreet Boys', year: 2001 }));
+console.log('Testing searching nothing- should not find a result', search({}));
 
+console.log(search({ artist: 'Backstreet Boys', year: 2005, trackName: 'Good Times, Bad Times' }));
+
+// console.log(collection[0].albumTracks[0].name);
