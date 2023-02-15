@@ -1,11 +1,12 @@
 console.log('***** Music Collection *****')
 let collection = [];
 
-function addToCollection(title, artist, yearPublished) {
+function addToCollection(title, artist, yearPublished, tracks) {
     let album = {
         albumTitle: title,
         albumArtist: artist,
-        albumYearPublished: yearPublished
+        albumYearPublished: yearPublished,
+        albumTracks: tracks
     }
     collection.push(album)
     return album
@@ -35,7 +36,7 @@ function findByArtist(artist) {
 function search(object) {
     let searchArray = [];
     for (item of collection) {
-        if (item.albumArtist === object.artist && item.albumYearPublished === object.year) {
+        if (item.albumArtist === object.artist && item.albumYearPublished === object.year && item.tracks === object.trackName) {
             searchArray.push(item);
         }
     }
@@ -47,7 +48,7 @@ function search(object) {
     return searchArray
 } //end search function.
 
-console.log(addToCollection('Led Zeppelin I', 'Led Zeppelin', 1969));
+console.log(addToCollection('Led Zeppelin I', 'Led Zeppelin', 1969, [['Good Times, Bad Times', 2:46],['Dazed and Confused', 6:27],['You Shook Me', 6:28]]));
 console.log(addToCollection('L.A. Woman', 'The Doors', 1971));
 console.log(addToCollection('Led Zeppelin IV', 'Led Zeppelin', 1971));
 console.log(addToCollection('Dark Side of the Moon', 'Pink Floyd', 1973));
