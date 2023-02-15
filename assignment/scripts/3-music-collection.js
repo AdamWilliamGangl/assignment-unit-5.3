@@ -47,11 +47,11 @@ function search(object) {
     return searchArray
 } //end search function.
 
-console.log(addToCollection('Stairway to Heaven', 'Led Zeppelin', 1971));
-console.log(addToCollection('Light My Fire', 'The Doors', 1967));
-console.log(addToCollection('Kashmir', 'Led Zeppelin', 1975));
-console.log(addToCollection('Comfortably Numb', 'Pink Floyd', 1980));
-console.log(addToCollection('Come Sail Away', 'Styx', 1977));
+console.log(addToCollection('Led Zeppelin I', 'Led Zeppelin', 1969));
+console.log(addToCollection('L.A. Woman', 'The Doors', 1971));
+console.log(addToCollection('Led Zeppelin IV', 'Led Zeppelin', 1971));
+console.log(addToCollection('Dark Side of the Moon', 'Pink Floyd', 1973));
+console.log(addToCollection('The Grand Illusion', 'Styx', 1977));
 console.log(addToCollection('Some Nights', 'Fun', 2012));
 
 showCollection(collection);
@@ -62,3 +62,4 @@ findByArtist('Backstreet Boys');
 console.log(search({ artist: 'Led Zeppelin', year: 1971 }));
 console.log(search({ artist: 'Backstreet Boys', year: 2001 }));
 console.log(search({}));
+
