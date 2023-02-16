@@ -33,27 +33,27 @@ function findByArtist(artist) {
     console.log(newArray)
 } //end findByArtist function.
 
-function search(object) {
-    let searchArray = [];
-    for (item of collection) {
-        for (taco of item.albumTracks){
-            if (item.albumTracks.name === object.trackName){
-                searchArray.push(item);
-            }
-        } // end nested for loop
-        if (item.albumArtist === object.artist && item.albumYearPublished === object.year) { //I read this as searching either an artist & year or a trackname.
-            searchArray.push(item);
-        }
-    } // end primary for loop
-    if (object.artist == null || object.year == null) {
-        console.log('No search parameters added');
-        return 
-    }
-    console.log('The following matches were found:');
-    return searchArray
-} //end search function.
+// function search(object) {
+//     let searchArray = [];
+//     for (item of collection) {
+//         for (taco of item.albumTracks){
+//             if (item.albumTracks.name === object.trackName){
+//                 searchArray.push(item);
+//             }
+//         } // end nested for loop
+//         if (item.albumArtist === object.artist && item.albumYearPublished === object.year) { //I read this as searching either an artist & year or a trackname.
+//             searchArray.push(item);
+//         }
+//     } // end primary for loop
+//     if (object.artist == null || object.year == null) {
+//         console.log('No search parameters added');
+//         return 
+//     }
+//     console.log('The following matches were found:');
+//     return searchArray
+// } //end search function.
 
-console.log(addToCollection('Led Zeppelin I', 'Led Zeppelin', 1969, [{name: 'Good Times, Bad Times', duration:'2:46'},{name:'Dazed and Confused', duration:'6:27'},{name:'You Shook Me', duration:'6:28'}]));
+console.log(addToCollection('Led Zeppelin I', 'Led Zeppelin', 1969, [{name:'Good Times, Bad Times', duration:'2:46'},{name:'Dazed and Confused', duration:'6:27'},{name:'You Shook Me', duration:'6:28'}]));
 console.log(addToCollection('L.A. Woman', 'The Doors', 1971, [{name:'Dazed and Confused', duration:'6:27'},{name:'You Shook Me', duration:'6:28'}]));
 console.log(addToCollection('Led Zeppelin IV', 'Led Zeppelin', 1971, [{name:'Dazed and Confused', duration:'6:27'},{name:'You Shook Me', duration:'6:28'}]));
 console.log(addToCollection('Dark Side of the Moon', 'Pink Floyd', 1973, [{name:'Dazed and Confused', duration:'6:27'},{name:'You Shook Me', duration:'6:28'}]));
@@ -69,6 +69,28 @@ console.log('Testing Led Zeppelin- should find a result', search({ artist: 'Led 
 console.log('Testing Backstreet Boys- Should not find a result', search({ artist: 'Backstreet Boys', year: 2001 }));
 console.log('Testing searching nothing- should not find a result', search({}));
 
-console.log(search({ artist: 'Backstreet Boys', year: 2005, trackName: 'Good Times, Bad Times' }));
+function search(object) {
+    let searchArray = [];
+    for (i=0; i<collection.length; i++) {
+        for (x=0; x<collection[i].albumTracks.length; x++){ 
+            if ( collection[i].albumTracks[x]=== object.trackName){
+                searchArray.push(collection[i].albumTracks[x]);
+            }
+        } // end nested for loop
+        if (searchArray.length < 1 && collection[i].albumArtist === object.artist && collection[i].albumYearPublished === object.year) { //I read this as searching either an artist & year or a trackname.
+            searchArray.push(collection[i]);
+        }
+    } // end primary for loop
+    if (object.artist == null || object.year == null) {//Removing 84-87 does not solve the problem.
+        console.log('No search parameters added');
+        return 
+    }
+    console.log('The following matches were found:');
+    return searchArray //Removing this does not solve the problem.
+} //end search function.
 
-// console.log(collection[0].albumTracks[0].name);
+
+console.log('Testing should result in a match', search({ artist: 'Backstreet Boys', year: 2005, trackName:'Good Times, Bad Times'})); //This is not working.
+console.log('Testing should result in no matches', search({ artist: 'Backstreet Boys', year: 2005, trackName:'Candle in the Wind'})); //This is working.
+console.log('Testing should result in a match', search({ artist: 'Led Zeppelin', year: 1971, trackName:'Candle in the Wind'})); //This is working.
+console.log('Testing should result in no matches', search({})); //This is working.
