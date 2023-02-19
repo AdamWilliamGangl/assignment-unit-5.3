@@ -14,8 +14,8 @@ function addToCollection(title, artist, yearPublished, tracks) {
 
 function showCollection(array) {
     console.log('The number of items in our collection is:', array.length);
-    for (i = 0; i < array.length; i++) {
-        for (x = 0; x < array[i].albumTracks.length; x++)
+    for (i = 0; i < array.length; i++) { //to get into initial array.
+        for (x = 0; x < array[i].albumTracks.length; x++) //to get into nested array for tracks and duration.
             console.log(array[i].albumTitle, 'by:', array[i].albumArtist, 'published in:', array[i].albumYearPublished, array[i].albumTracks[x])
     }
 } //end showCollection function.
@@ -48,23 +48,23 @@ function search(object) {
     } // end primary for loop
     if (object.artist == null || object.year == null) {
         console.log('No search parameters added');
-        return
+        return undefined
     }
     // console.log('The following matches were found:', searchArray);
     return searchArray
 } //end search function.
 
 console.log(addToCollection('Led Zeppelin I', 'Led Zeppelin', 1969, [{ name: 'Good Times, Bad Times', duration: '2:46' }, { name: 'Dazed and Confused', duration: '6:27' }, { name: 'You Shook Me', duration: '6:28' }]));
-console.log(addToCollection('L.A. Woman', 'The Doors', 1971, [{ name: 'Dazed and Confused', duration: '6:27' }, { name: 'You Shook Me', duration: '6:28' }]));
-console.log(addToCollection('Led Zeppelin IV', 'Led Zeppelin', 1971, [{ name: 'Dazed and Confused', duration: '6:27' }, { name: 'You Shook Me', duration: '6:28' }]));
-console.log(addToCollection('Dark Side of the Moon', 'Pink Floyd', 1973, [{ name: 'Dazed and Confused', duration: '6:27' }, { name: 'You Shook Me', duration: '6:28' }]));
-console.log(addToCollection('The Grand Illusion', 'Styx', 1977, [{ name: 'Dazed and Confused', duration: '6:27' }, { name: 'You Shook Me', duration: '6:28' }]));
-console.log(addToCollection('Some Nights', 'Fun', 2012, [{ name: 'Dazed and Confused', duration: '6:27' }, { name: 'You Shook Me', duration: '6:28' }]));
+console.log(addToCollection('L.A. Woman', 'The Doors', 1971, [{ name: 'Love Her Madly', duration: '3:19' }, { name: 'L.A. Woman', duration: '7:51' }]));
+console.log(addToCollection('Led Zeppelin IV', 'Led Zeppelin', 1971, [{ name: 'Stairway to Heaven', duration: '8:02' }, { name: 'The Battle of Evermore', duration: '5:52' }]));
+console.log(addToCollection('Dark Side of the Moon', 'Pink Floyd', 1973, [{ name: 'Time', duration: '7:05' }, { name: 'Eclipse', duration: '2:01' }]));
+console.log(addToCollection('The Grand Illusion', 'Styx', 1977, [{ name: 'Fooling Yourself', duration: '5:30' }, { name: 'Come Sail Away', duration: '6:05' }]));
+console.log(addToCollection('Some Nights', 'Fun', 2012, [{ name: 'Carry On', duration: '4:38' }, { name: 'Some Nights', duration: '4:37' }]));
 
 showCollection(collection);
 
-findByArtist('Led Zeppelin');
-findByArtist('Backstreet Boys');
+findByArtist('Led Zeppelin'); //testing an artist in the collection.
+findByArtist('Backstreet Boys'); //Testing an artist not in collection.
 
 console.log('Testing Led Zeppelin- should find a result', search({ artist: 'Led Zeppelin', year: 1971 }));
 console.log('Testing Backstreet Boys- Should not find a result', search({ artist: 'Backstreet Boys', year: 2001 }));
