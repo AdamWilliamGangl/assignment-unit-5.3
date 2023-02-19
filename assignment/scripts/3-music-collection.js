@@ -1,6 +1,18 @@
+// @ts-check
 console.log('***** Music Collection *****')
 let collection = [];
 
+
+/**
+ * addToCollection
+ * addToCollection takes title and artist as strings, yearPublished as a number and tracks as an array of objects.
+ * Pushes the given parameters to the global variable 'collection'.
+ * @param {string} title -the title of the album.
+ * @param {string} artist - the artist of the album.
+ * @param {number} yearPublished - the year the album was published.
+ * @param {array} tracks - an array of tracks, each as an object with a name and duration.
+ * @returns {album} returns the album object.
+ */
 function addToCollection(title, artist, yearPublished, tracks) {
     let album = {
         albumTitle: title,
@@ -12,6 +24,14 @@ function addToCollection(title, artist, yearPublished, tracks) {
     return album
 } //end addToCollection function.
 
+/**
+ * showCollection
+ * showCollection iterates through the parent array where we have the title, artist, and year published
+ * Before console-logging the results it drops down into a child array where we have the tracks, an array of objects
+ * We console log the above information.
+ * @param {array} array -the array we want to search- in this instance likely the 'collection' variable.
+ */
+
 function showCollection(array) {
     console.log('The number of items in our collection is:', array.length);
     for (i = 0; i < array.length; i++) { //to get into initial array.
@@ -19,6 +39,12 @@ function showCollection(array) {
             console.log(array[i].albumTitle, 'by:', array[i].albumArtist, 'published in:', array[i].albumYearPublished, array[i].albumTracks[x])
     }
 } //end showCollection function.
+
+/**
+ * findByArtist
+ * findByArtist searchs our collection for an artist match against the given parameter, adds it to a new array, and returns that array.
+ * @param {string} artist - this is the string that will search against the items in our collection array.
+ */
 
 function findByArtist(artist) {
     let newArray = [];
