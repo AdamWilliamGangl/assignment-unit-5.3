@@ -1,4 +1,4 @@
-// @ts-check
+
 console.log('***** Music Collection *****')
 let collection = [];
 
@@ -31,7 +31,6 @@ function addToCollection(title, artist, yearPublished, tracks) {
  * We console log the above information.
  * @param {array} array -the array we want to search- in this instance likely the 'collection' variable.
  */
-
 function showCollection(array) {
     console.log('The number of items in our collection is:', array.length);
     for (i = 0; i < array.length; i++) { //to get into initial array.
